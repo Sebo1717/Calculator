@@ -1,9 +1,7 @@
-// IIFE (Immediately Invoked Function Expression)
 (() => {
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
-  // ===== DOM =====
   const myObject = {};
   myObject.num0 = $('[id="0"]'); // => document.getElementById("0")
   myObject.num1 = $('[id="1"]');
@@ -29,13 +27,11 @@
   myObject.history = [];
   myObject.historyIndex = null;
 
-  // ===== INIT =====
   const init = () => {
     addButtonEventListeners();
     document.body.addEventListener('keydown', keyHandler);
   };
 
-  // ===== EVENT LISTENERS =====
   const addButtonEventListeners = () => {
     const numbers = [
       myObject.num0,
@@ -50,37 +46,30 @@
       myObject.num9,
     ];
 
-    // Numbers 0-9
     numbers.forEach((num) => {
       num.addEventListener('click', () => {
         myObject.output.innerHTML += num.textContent;
       });
     });
 
-    // Addition (+)
     myObject.addition.addEventListener('click', () => {
       myObject.output.innerHTML += '+';
     });
 
-    // Subtraction (-)
     myObject.subtraction.addEventListener('click', () => {
       myObject.output.innerHTML += '-';
     });
 
-    // Multiplication (x)
     myObject.multiplication.addEventListener('click', () => {
       myObject.output.innerHTML += '*';
     });
 
-    // Division (÷)
     myObject.division.addEventListener('click', () => {
       myObject.output.innerHTML += '/';
     });
 
-    // Equal Sign (=)
     myObject.equal.addEventListener('click', calculate);
 
-    // Clear (AC)
     myObject.clear.addEventListener('click', () => {
       myObject.output.innerHTML = '';
       myObject.calculation.innerHTML = '';
@@ -98,7 +87,6 @@
     })
   };
 
-  // ===== FUNCTIONS =====
   const calculate = () => {
     let a = myObject.output.innerHTML;
     myObject.history.push(a)
@@ -189,6 +177,5 @@
     });
   };
 
-  // ===== CALL INIT =====
   init();
 })();
